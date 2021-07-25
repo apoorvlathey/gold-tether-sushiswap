@@ -7,4 +7,7 @@ So I forked the Sushiswap contracts and changed the `transfer` calls to `transfe
 
 1. `yarn install`
 2. Create `.env` file. Check `.env.sample` for more info.
-3. `yarn test` to test on Forked Mainnet
+3. `yarn test` to run tests on **Forked Mainnet**
+
+ALL TESTS ARE PASSING 🎉
+![terminal output](https://i.imgur.com/HbXTAyk.png)
