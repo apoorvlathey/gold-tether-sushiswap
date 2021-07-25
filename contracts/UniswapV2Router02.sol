@@ -135,6 +135,7 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
             address(this),
             deadline
         );
+        TransferHelper.safeApprove(token, address(this), amountToken);
         TransferHelper.safeTransferFrom(token, address(this), to, amountToken);
         IWETH(WETH).withdraw(amountETH);
         TransferHelper.safeTransferETH(to, amountETH);
@@ -187,7 +188,9 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
             address(this),
             deadline
         );
-        TransferHelper.safeTransferFrom(token, address(this), to, IERC20Uniswap(token).balanceOf(address(this)));
+        uint256 balance = IERC20Uniswap(token).balanceOf(address(this));
+        TransferHelper.safeApprove(token, address(this), balance);
+        TransferHelper.safeTransferFrom(token, address(this), to, balance);
         IWETH(WETH).withdraw(amountETH);
         TransferHelper.safeTransferETH(to, amountETH);
     }

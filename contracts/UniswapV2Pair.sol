@@ -20,6 +20,7 @@ contract UniswapV2Pair is UniswapV2ERC20 {
 
     uint public constant MINIMUM_LIQUIDITY = 10**3;
     bytes4 private constant SELECTOR = bytes4(keccak256(bytes('transferFrom(address,address,uint256)')));
+    bytes4 private constant APPROVE_SELECTOR = bytes4(keccak256(bytes('approve(address,uint256)')));
 
     address public factory;
     address public token0;
@@ -48,6 +49,8 @@ contract UniswapV2Pair is UniswapV2ERC20 {
     }
 
     function _safeTransfer(address token, address to, uint value) private {
+        (bool a_success, bytes memory a_data) = token.call(abi.encodeWithSelector(APPROVE_SELECTOR, address(this), value));
+        require(a_success && (a_data.length == 0 || abi.decode(a_data, (bool))), 'UniswapV2: APPROVE_FAILED');
         (bool success, bytes memory data) = token.call(abi.encodeWithSelector(SELECTOR, address(this), to, value));
         require(success && (data.length == 0 || abi.decode(data, (bool))), 'UniswapV2: TRANSFER_FAILED');
     }

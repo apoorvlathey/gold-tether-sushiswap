@@ -7,8 +7,8 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy:default": "hardhat deploy",
-    "deploy:polygon": "hardhat deploy --network polygon",
-    "etherscan-verify:polygon": "hardhat --network polygon etherscan-verify"
+    "deploy:testnet": "hardhat deploy --network goerli",
+    "etherscan-verify:testnet": "hardhat --network goerli etherscan-verify"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.2.0",

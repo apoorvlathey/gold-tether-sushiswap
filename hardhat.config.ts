@@ -12,13 +12,35 @@ import "hardhat-tracer";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.6.12",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
+    compilers: [
+      {
+        version: "0.4.22",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
       },
-    },
+      {
+        version: "0.5.2",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.6.12",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+    ],
   },
   namedAccounts: {
     deployer: 0,
@@ -29,6 +51,10 @@ const config: HardhatUserConfig = {
       forking: {
         url: process.env.NODE_URL!,
       },
+    },
+    goerli: {
+      url: process.env.GOERLI_TESTNET_NODE_URL!,
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY!],
     },
   },
   mocha: {

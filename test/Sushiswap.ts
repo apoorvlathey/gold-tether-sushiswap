@@ -62,6 +62,8 @@ describe("Sushiswap", () => {
       WETH,
     ])) as UniswapV2Router02;
 
+    // console.log({ iniCode: await factory.pairCodeHash() });
+
     XAUtToken = (await ethers.getContractAt(
       ERC20Artifact.abi,
       XAUt
